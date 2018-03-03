@@ -1,71 +1,55 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  CardLeft: {
+  CardTop: {
     backgroundColor: 'rgb(68,195,249)',
-    flex: 1,
+    height: '50%',
+    paddingTop: '25%',
   },
   CardFlex: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     position: 'absolute',
-    paddingTop: '17%',
-    paddingLeft: '35%',
-    paddingRight: '35%',
-    flexWrap: 'wrap',
+    width: '100%',
+    height: '100%',
   },
-  CardRight: {
+  CardBottom: {
     backgroundColor: 'white',
-    flex: 1,
-    width: 250,
     padding: 0,
   },
   CardWelcome: {
-    fontSize: 30,
-    paddingTop: 100,
-    paddingLeft: 50,
-    paddingRight: 50,
+    textAlign: 'center',
+    fontSize: 40,
   },
   CardTo: {
-    fontSize: 30,
-    paddingLeft: 50,
-    paddingRight: 50,
+    textAlign: 'center',
+    fontSize: 40,
   },
   CardQuizzy: {
     color: 'white',
-    fontSize: 30,
-    paddingBottom: 100,
-    paddingLeft: 50,
-    paddingRight: 50,
+    textAlign: 'center',
+    fontSize: 50,
   },
 
   CardLogin: {
     fontSize: 30,
-    textAlign: 'left',
-    paddingTop: 20,
-    padding: 10,
+    paddingLeft: 20,
+    paddingTop: 15,
   },
   CardUsername: {
-    textAlign: 'left',
-    paddingTop: 70,
-    paddingLeft: 10,
+    paddingTop: 50,
+    paddingLeft: 20,
+    fontWeight: 'bold',
   },
   CardInput: {
-    width: 200,
+    width: '90%',
+    height: '15%',
     borderColor: 'black',
     borderWidth: 1,
+    marginLeft: 20,
+    marginTop: 5,
+
   },
   CardButton: {
-    margin: 0,
-    display: 'none',
-    paddingLeft: 50,
-    paddingRight: 50,
-    paddingTop: 3,
-    paddingBottom: 3,
-    marginTop: 50,
-    marginLeft: 60,
-    marginBottom: 30,
-    textAlign: 'center',
+    color: 'black',
+    paddingTop: 20,
   },
 });

@@ -13,12 +13,12 @@ class Card extends React.Component {
   render() {
     return (
       <View style={style.CardFlex}>
-        <View style={style.CardLeft}>
+        <View style={style.CardTop}>
           <Text style={style.CardWelcome}>Welcome</Text>
           <Text style={style.CardTo}>to</Text>
           <Text style={style.CardQuizzy}>Quizzy!</Text>
         </View>
-        <View style={style.CardRight}>
+        <View style={style.CardBottom}>
           <Text style={style.CardLogin}>Login</Text>
           <Text style={style.CardUsername}>UserName</Text>
           <TextInput style={style.CardInput} onChange={event => this.props.nameUser(event)} />
