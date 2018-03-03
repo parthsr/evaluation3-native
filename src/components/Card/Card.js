@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import style from './Card.style';
 
 class Card extends React.Component {
@@ -19,10 +19,11 @@ class Card extends React.Component {
           <Text style={style.CardQuizzy}>Quizzy!</Text>
         </View>
         <View style={style.CardBottom}>
-          <Text style={style.CardLogin}>Login</Text>
+          <Text style={style.CardLogin}>Login</Text>sdadasd
           <Text style={style.CardUsername}>UserName</Text>
           <TextInput style={style.CardInput} onChange={event => this.props.nameUser(event)} />
-          <Button style={style.CardButton} onClick={() => this.props.onClick()} title="Login" />
+          <View style={style.CardTouchView}><TouchableOpacity style={style.CardButton} onClick={() => this.props.onClick()}><Text>Login</Text></TouchableOpacity>
+          </View>
         </View>
       </View>
     );

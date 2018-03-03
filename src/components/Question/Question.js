@@ -1,5 +1,5 @@
 import React from 'react';
-import './Question.css';
+import style from './Question.style';
 import Options from '../Options/Options';
 
 class Question extends React.Component {
@@ -21,7 +21,7 @@ class Question extends React.Component {
         const index = this.props.userQuestions.indexOf(questionid);
         const newcontentToDisplay =
          (
-           <div className="option" key={i}>
+           <div style={style.option} key={i}>
              <Options
                questionid={questionid}
                handleChange={(event, id, id2) => { this.handleChange(event, id, id2); }}
@@ -34,7 +34,7 @@ class Question extends React.Component {
       } else {
         const newcontentToDisplay =
          (
-           <div className="option" key={i}>
+           <div style={style.option} key={i}>
              <Options
                questionid={questionid}
                handleChange={(event, id, id2) => { this.handleChange(event, id, id2); }}
@@ -47,17 +47,17 @@ class Question extends React.Component {
       }
     }
     return (
-      <div className="Question-div">
-        <p className="Question-topPad">
+      <div style={style.QuestionDiv}>
+        <p style={style.QuestionTopPad}>
            Question {this.props.qid}
         </p>
-        <p className="Question-p">
-          <div className="Question-question">
+        <p style={style.QuestionP}>
+          <div style={style.QuestionQuestion}>
             {this.props.question.question}
           </div>
         </p>
         <p>
-          <div className="Question-option">
+          <div style={style.Question - option}>
             { contentToDisplay }
           </div>
         </p>

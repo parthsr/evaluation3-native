@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import { View } from 'react-native';
-// import Header from '../Header/Header';
+import { View, Button } from 'react-native';
+import Header from '../Header/Header';
 import Card from '../Card/Card';
-// import Questions from '../Questions/Questions';
+import Questions from '../Questions/Questions';
 // import YourScore from '../YourScore/YourScore';
 import style from './Board.style';
 
@@ -83,13 +83,14 @@ class Board extends React.Component {
     } else if (this.state.pageNo === 2) {
       return (
         <View>
-          {/* <Questions
+          <Header name={`Hello ${this.state.username}`} />
+          <Questions
             userQuestions={this.state.userQuestions}
             userAnswers={this.state.userAnswers}
             username={this.state.username}
             setQuestions={(ques) => { this.setQuestions(ques); }}
           />
-          <button onClick={() => this.bringScores()}>Calculate</button> */}
+          <Button onClick={() => this.bringScores()}>Calculate</Button>
         </View>
       );
     }

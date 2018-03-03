@@ -49,7 +49,20 @@ export default StyleSheet.create({
 
   },
   CardButton: {
-    color: 'black',
-    paddingTop: 20,
+    backgroundColor: '#ffffff',
+    marginTop: 50,
+    paddingTop: 10,
+    paddingBottom: 10,
+    width: '50%',
+    borderRadius: 10,
+    borderColor: 'black',
+    borderWidth: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  CardTouchView: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+
   },
 });

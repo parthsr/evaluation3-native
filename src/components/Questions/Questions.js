@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import './Questions.css';
+import style from './Questions.style';
 import Question from '../Question/Question';
 
 class Questions extends React.Component {
@@ -101,7 +101,6 @@ class Questions extends React.Component {
     for (let i = 0; i < this.state.questions.length; i += 1) {
       const newcontentToDisplay =
          (<div
-           className="Question"
            key={new Date() + i}
          ><Question
            handleChange={(value, id, id2) => { this.handleChange(value, id, id2); }}
@@ -111,11 +110,11 @@ class Questions extends React.Component {
            userAnswers={this.state.userAnswers}
            userQuestions={this.state.userQuestions}
          />
-         </div>);
+          </div>);
       contentToDisplay.push(newcontentToDisplay);
     }
     return (
-      <div className="Questions-content">
+      <div style={style.QuestionsContent}>
         {contentToDisplay}
       </div>
     );
