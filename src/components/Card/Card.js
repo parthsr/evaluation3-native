@@ -21,8 +21,8 @@ class Card extends React.Component {
         <View style={style.CardBottom}>
           <Text style={style.CardLogin}>Login</Text>sdadasd
           <Text style={style.CardUsername}>UserName</Text>
-          <TextInput style={style.CardInput} onChange={event => this.props.nameUser(event)} />
-          <View style={style.CardTouchView}><TouchableOpacity style={style.CardButton} onClick={() => this.props.onClick()}><Text>Login</Text></TouchableOpacity>
+          <TextInput style={style.CardInput} onChangeText={event => this.props.nameUser(event)} />
+          <View style={style.CardTouchView}><TouchableOpacity style={style.CardButton} onPress={() => this.props.onClick()}><Text>Login</Text></TouchableOpacity>
           </View>
         </View>
       </View>

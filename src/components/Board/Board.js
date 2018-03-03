@@ -54,7 +54,7 @@ class Board extends React.Component {
 
   nameUser = (event) => {
     this.setState({
-      username: event.target.value,
+      username: event,
     });
   }
   bringScores = () => {
