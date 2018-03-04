@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
+import PropTypes from 'prop-types';
 import style from './Questions.style';
 import Question from '../Question/Question';
 
@@ -12,6 +13,12 @@ class Questions extends React.Component {
       userAnswers: this.props.userAnswers,
       score: 0,
     };
+    Questions.propTypes = {
+      setQuestions: PropTypes.func.isRequired,
+      username: PropTypes.string.isRequired,
+      userAnswers: PropTypes.array.isRequired,
+      userQuestions: PropTypes.array.isRequired,
+    };
   }
 
   componentDidMount() {
@@ -22,9 +29,9 @@ class Questions extends React.Component {
         'Content-Type': 'application/json',
       },
     }).then(res => res.json())
-      .then((res) => {
-        console.log(res);
-        if (Object.keys(res).length === 0) {
+      .then((response) => {
+        console.log(response);
+        if (Object.keys(response).length === 0) {
           fetch('http://localhost:8080//getAll', {
             method: 'post',
             headers: {
@@ -38,19 +45,19 @@ class Questions extends React.Component {
                 Accept: 'application/json, text/plain, */*',
                 'Content-Type': 'application/json',
               },
-            }).then(res => res.json())
-              .then((res) => {
+            }).then(resp => resp.json())
+              .then((responseInner) => {
                 this.setState({
-                  questions: res,
+                  questions: responseInner,
                 });
-                this.props.setQuestions(res);
+                this.props.setQuestions(responseInner);
               });
           });
         } else {
-          console.log('#####', res);
-          this.props.setQuestions(res);
+          console.log('#####', response);
+          this.props.setQuestions(response);
           this.setState({
-            questions: res,
+            questions: response,
           });
         }
       });
@@ -78,7 +85,7 @@ class Questions extends React.Component {
     console.log(userA);
     let commaAns = '';
     let commaQues = '';
-    for (let i = 0; i < userA.length; i++) {
+    for (let i = 0; i < userA.length; i += 1) {
       commaAns += `${userA[i]},`;
       commaQues += `${userQ[i]},`;
     }
