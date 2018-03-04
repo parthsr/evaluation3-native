@@ -2,18 +2,19 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   HeaderTitleWrapper: {
-    fontSize: 40,
-    backgroundColor: 'white',
-    color: 'white',
-    top: 0,
+    backgroundColor: 'black',
+    top: 20,
     position: 'absolute',
     width: '100%',
-    display: 'flex',
+    height: 15,
+    padding: 0,
+    margin: 0,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
   p: {
-    paddingLeft: 40,
-    margin: 10,
+    color: 'white',
+    padding: 0,
+    margin: 0,
   },
 });

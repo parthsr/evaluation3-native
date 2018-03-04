@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import { View, ScrollView } from 'react-native';
 import style from './Questions.style';
 import Question from '../Question/Question';
 
@@ -15,24 +15,45 @@ class Questions extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/sendAll').then((response) => {
-      if (Object.keys(response.data).length === 0) {
-        axios.post('/getAll').then(() => {
-          axios.get('/sendAll').then((responseInner) => {
-            this.setState({
-              questions: responseInner.data,
-            });
-            this.props.setQuestions(responseInner.data);
+    fetch('http://localhost:8080/sendAll', {
+      method: 'get',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+    }).then(res => res.json())
+      .then((res) => {
+        console.log(res);
+        if (Object.keys(res).length === 0) {
+          fetch('http://localhost:8080//getAll', {
+            method: 'post',
+            headers: {
+              Accept: 'application/json, text/plain, */*',
+              'Content-Type': 'application/json',
+            },
+          }).then(() => {
+            fetch('http://localhost:8080/sendAll', {
+              method: 'get',
+              headers: {
+                Accept: 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+              },
+            }).then(res => res.json())
+              .then((res) => {
+                this.setState({
+                  questions: res,
+                });
+                this.props.setQuestions(res);
+              });
           });
-        });
-      } else {
-        console.log(response.data);
-        this.setState({
-          questions: response.data,
-        });
-        this.props.setQuestions(response.data);
-      }
-    });
+        } else {
+          console.log('#####', res);
+          this.props.setQuestions(res);
+          this.setState({
+            questions: res,
+          });
+        }
+      });
   }
   handleChange = (value, qid, iterator) => {
     const userQ = this.state.userQuestions.slice();
@@ -62,19 +83,31 @@ class Questions extends React.Component {
       commaQues += `${userQ[i]},`;
     }
     console.log(commaAns);
-    const options = {
-
-      username: this.props.username,
-      answers: commaAns,
-      questions: commaQues,
-    };
-    axios.post('/updateUser', options).then(() => {
+    fetch('http://localhost:8080/updateUser', {
+      method: 'post',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: this.props.username,
+        answers: commaAns,
+        questions: commaQues,
+      }),
+    }).then(() => {
       if (value === (this.state.questions[iterator - 1].rightans)) {
         const options2 = {
-          username: this.props.username,
-          score: this.state.score + 1 - scoreGarb,
+          method: 'post',
+          headers: {
+            Accept: 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: this.props.username,
+            score: this.state.score + 1 - scoreGarb,
+          }),
         };
-        axios.post('/score', options2).then(() => {
+        fetch('http://localhost:8080/score', options2).then(() => {
           this.setState({
             userQuestions: userQ,
             userAnswers: userA,
@@ -86,37 +119,42 @@ class Questions extends React.Component {
           username: this.props.username,
           score: this.state.score - scoreGarb,
         };
-        axios.post('/score', options2).then(() => {
+        fetch('http://localhost:8080/score', options2).then(() => {
           this.setState({
             userQuestions: userQ,
             userAnswers: userA,
-            score: this.state.score - scoreGarb,
+            score: this.state.score + 1 - scoreGarb,
           });
         });
       }
     });
-  };
+  }
+
+
   render() {
     const contentToDisplay = [];
     for (let i = 0; i < this.state.questions.length; i += 1) {
       const newcontentToDisplay =
-         (<div
+         (<View
+           style={style.QuestionsView}
            key={new Date() + i}
          ><Question
            handleChange={(value, id, id2) => { this.handleChange(value, id, id2); }}
            qarray={this.state.userQuestions}
-           qid={i + 1}
+           iterator={i + 1}
            question={this.state.questions[i]}
            userAnswers={this.state.userAnswers}
            userQuestions={this.state.userQuestions}
          />
-          </div>);
+          </View>);
       contentToDisplay.push(newcontentToDisplay);
     }
     return (
-      <div style={style.QuestionsContent}>
-        {contentToDisplay}
-      </div>
+      <ScrollView>
+        <View style={style.QuestionsContent}>
+          {contentToDisplay}
+        </View>
+      </ScrollView>
     );
   }
 }

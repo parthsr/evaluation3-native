@@ -21,32 +21,42 @@ class Board extends React.Component {
   }
 
   onLogin = () => {
-    axios.post('/user', { username: this.state.username }).then((response) => {
-      console.log(response.data);
-      if (response.data[0] != null) {
-        console.log(response.data);
-        let userAnswers = (response.data[0].answers).split(',');
-        userAnswers = userAnswers.slice(0, userAnswers.length - 1);
-        let userQuestions = (response.data[0].questions).split(',');
-        userQuestions = userQuestions.slice(0, userQuestions.length - 1);
-        userQuestions = userQuestions.map(userQuestion => Number(userQuestion));
-        console.log(userAnswers);
-        console.log(userQuestions);
-        this.setState({
-          pageNo: 2,
-          userAnswers,
-          userQuestions,
-        });
-      } else {
-        this.setState({
-          pageNo: 2,
-        });
-      }
-    });
+    console.log('hi');
+    fetch('http://localhost:8080/user', {
+      method: 'post',
+      headers: {
+        Accept: 'application/json, text/plain, */s*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username: this.state.username }),
+    }).then(res => res.json())
+      .then((res) => {
+        console.log(res);
+        // console.log(JSON.stringify(response.json()));
+        if (res[0] != null) {
+          console.log(res.data);
+          let userAnswers = (res[0].answers).split(',');
+          userAnswers = userAnswers.slice(0, userAnswers.length - 1);
+          let userQuestions = (res[0].questions).split(',');
+          userQuestions = userQuestions.slice(0, userQuestions.length - 1);
+          userQuestions = userQuestions.map(userQuestion => Number(userQuestion));
+          console.log(userAnswers);
+          console.log(userQuestions);
+          this.setState({
+            pageNo: 2,
+            userAnswers,
+            userQuestions,
+          });
+        } else {
+          this.setState({
+            pageNo: 2,
+          });
+        }
+      });
   }
 
   setQuestions = (questions) => {
-    console.log(questions);
+    console.log('......', questions);
     this.setState({
       questions,
     });
@@ -90,7 +100,7 @@ class Board extends React.Component {
             username={this.state.username}
             setQuestions={(ques) => { this.setQuestions(ques); }}
           />
-          <Button onClick={() => this.bringScores()}>Calculate</Button>
+          <Button onClick={() => this.bringScores()} title="Calculate" />
         </View>
       );
     }

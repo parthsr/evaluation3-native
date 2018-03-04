@@ -11,6 +11,7 @@ import {
   Text,
   View,
 } from 'react-native';
+
 import Board from './src/components/Board/Board';
 
 const instructions = Platform.select({
@@ -20,7 +21,9 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-
+doSomething = () => {
+  console.log('radio');
+};
 export default class App extends Component {
   render() {
     return (

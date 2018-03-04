@@ -1,14 +1,14 @@
 import React from 'react';
+import { View, Text } from 'react-native';
 import style from './Question.style';
 import Options from '../Options/Options';
 
 class Question extends React.Component {
   componentDidMount() {
-    console.log('REACHED');
+    console.log('REACHED@@@@@');
   }
-  handleChange(event) {
-    const val = event.target.value;
-    this.props.handleChange(val, this.props.question.questionid, this.props.qid);
+  handleChange(val) {
+    this.props.handleChange(val, this.props.question.questionid, this.props.iterator);
   }
   render() {
     const option = this.props.question.options;
@@ -21,47 +21,43 @@ class Question extends React.Component {
         const index = this.props.userQuestions.indexOf(questionid);
         const newcontentToDisplay =
          (
-           <div style={style.option} key={i}>
+           <View style={style.option} key={i}>
              <Options
                questionid={questionid}
                handleChange={(event, id, id2) => { this.handleChange(event, id, id2); }}
                option={optionArray[i]}
                userAnswers={this.props.userAnswers[index]}
              />
-           </div>
+           </View>
          );
         contentToDisplay.push(newcontentToDisplay);
       } else {
         const newcontentToDisplay =
          (
-           <div style={style.option} key={i}>
+           <View style={style.option} key={i}>
              <Options
                questionid={questionid}
                handleChange={(event, id, id2) => { this.handleChange(event, id, id2); }}
                option={optionArray[i]}
                userAnswers={0}
              />
-           </div>
+           </View>
          );
         contentToDisplay.push(newcontentToDisplay);
       }
     }
     return (
-      <div style={style.QuestionDiv}>
-        <p style={style.QuestionTopPad}>
-           Question {this.props.qid}
-        </p>
-        <p style={style.QuestionP}>
-          <div style={style.QuestionQuestion}>
-            {this.props.question.question}
-          </div>
-        </p>
-        <p>
-          <div style={style.Question - option}>
-            { contentToDisplay }
-          </div>
-        </p>
-      </div>
+      <View style={style.QuestionDiv}>
+        <Text style={style.QuestionTopPad}>
+           Question {this.props.iterator}
+        </Text>
+        <Text style={style.QuestionP}>
+          {this.props.question.question}
+        </Text>
+        <View >
+          { contentToDisplay }
+        </View>
+      </View>
     );
   }
 }

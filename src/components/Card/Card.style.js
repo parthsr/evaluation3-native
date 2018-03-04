@@ -46,7 +46,6 @@ export default StyleSheet.create({
     borderWidth: 1,
     marginLeft: 20,
     marginTop: 5,
-
   },
   CardButton: {
     backgroundColor: '#ffffff',

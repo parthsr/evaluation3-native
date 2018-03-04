@@ -1,22 +1,20 @@
 import React from 'react';
+import { Text, View } from 'react-native';
+import RadioButton from 'react-native-radio-button';
+import style from './Options.style';
 
-
-const Options = (props) =>
-  //   handleChange(event) {
-  //     this.setState({
-  //       checkedOption: event.target.value,
-  //     });
-  //     this.props.handleChange(event, this.props.qid, this.props.iterator);
-  //   }
-{
+const Options = (props) => {
   console.log(props.selectOption);
   return (
-    <div>
-      <label>
-        <input type="radio" checked={props.option === props.userAnswers} value={props.option} onChange={(event) => { props.handleChange(event); }} />
-        {props.option}
-      </label>
-    </div>
+    <View style={style.OptionsDiv}>
+      <RadioButton
+        isSelected={props.option === props.userAnswers}
+        onPress={() => { props.handleChange(props.option); }}
+        buttonWrapStyle={{ marginLeft: 10 }}
+      />
+      <Text>{props.option}</Text>
+    </View>
   );
 };
 export default Options;
+
