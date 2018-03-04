@@ -1,9 +1,20 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import PropTypes from 'prop-types';
 import style from './Question.style';
 import Options from '../Options/Options';
 
 class Question extends React.Component {
+  constructor(props) {
+    super(props);
+    Question.propTypes = {
+      handleChange: PropTypes.func.isRequired,
+      question: PropTypes.instanceOf({}).isRequired,
+      iterator: PropTypes.number.isRequired,
+      userQuestions: PropTypes.array.isRequired,
+      userAnswers: PropTypes.array.isRequired,
+    };
+  }
   componentDidMount() {
     console.log('REACHED@@@@@');
   }
@@ -12,7 +23,7 @@ class Question extends React.Component {
   }
   render() {
     const option = this.props.question.options;
-    const questionid = this.props.question.questionid;
+    const { questionid } = this.props.question;
     const optionArray = option.split(',');
 
     const contentToDisplay = [];

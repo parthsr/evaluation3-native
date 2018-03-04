@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import RadioButton from 'react-native-radio-button';
+import PropTypes from 'prop-types';
 import style from './Options.style';
 
 const Options = (props) => {
@@ -15,6 +16,13 @@ const Options = (props) => {
       <Text style={style.OptionsText}>{props.option}</Text>
     </View>
   );
+};
+
+Options.propTypes = {
+  selectOption: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  userAnswers: PropTypes.string.isRequired,
+  option: PropTypes.string.isRequired,
 };
 export default Options;
 
