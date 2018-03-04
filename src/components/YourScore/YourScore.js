@@ -44,7 +44,7 @@ class YourScore extends React.Component {
     for (let i = 0; i < Math.min(this.props.allScores.length, 5); i += 1) {
       if (scores[i].username === this.state.username) {
         const content = (
-          <View style={style.YourScoreScoreSelect}>
+          <View style={style.YourScoreScoreSelect} key={i}>
             <Text ><Text style={style.YourScoreNumber}>{i + 1}.</Text>  {scores[i].username}</Text>
             <Text >{scores[i].score}</Text>
           </View>);
@@ -52,7 +52,7 @@ class YourScore extends React.Component {
       } else {
         console.log(scores);
         const content = (
-          <View style={style.YourScoreScore}>
+          <View style={style.YourScoreScore} key={i}>
             <Text ><Text style={style.YourScoreNumber}>{i + 1}.</Text>  {scores[i].username}</Text>
             <Text >{scores[i].score}</Text>
           </View>);

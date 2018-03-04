@@ -15,7 +15,6 @@ export default StyleSheet.create({
     paddingRight: 10,
     borderColor: 'black',
     borderWidth: 1,
-    color: 'white',
   },
   YourScoreScoreSelect: {
     display: 'flex',
@@ -31,7 +30,6 @@ export default StyleSheet.create({
     paddingRight: 10,
     borderColor: 'black',
     borderWidth: 1,
-    color: 'white',
   },
 
   YourScoreNum: {

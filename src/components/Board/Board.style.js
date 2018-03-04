@@ -5,7 +5,6 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     height: '100%',
     width: '100%',
-    textAlign: 'center',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -24,7 +24,6 @@ export default StyleSheet.create({
     fontSize: 40,
   },
   CardQuizzy: {
-    color: 'white',
     textAlign: 'center',
     fontSize: 50,
   },
