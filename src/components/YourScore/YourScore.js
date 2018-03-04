@@ -1,5 +1,6 @@
 import React from 'react';
-import './YourScore.css';
+import { Text, View } from 'react-native';
+import style from './YourScore.style';
 
 class YourScore extends React.Component {
   constructor(props) {
@@ -30,29 +31,29 @@ class YourScore extends React.Component {
         }
       }
     }
-    console.log(scores);
+    console.log('####', scores);
     for (let i = 0; i < Math.min(this.props.allScores.length, 5); i++) {
       console.log(scores);
       const content = (
-        <div className="YourScore-score">
-          <p ><span className="YourScore-number">{i + 1}.</span>   {scores[i].username}</p>
-          <p >{scores[i].score}</p>
-        </div>);
+        <View style={style.YourScoreScore}>
+          <Text ><Text style={style.YourScoreNumber}>{i + 1}.</Text>  {scores[i].username}</Text>
+          <Text >{scores[i].score}</Text>
+        </View>);
       contentToDisplay.push(content);
       // console.log(content);
     }
     return (
-      <div>
-        <p className="YourScore-text">Your Score</p>
-        <div className="YourScore-my">
-          <p className="YourScore-num">{this.state.score}
-            <span className="YourScore-length">/{JSON.stringify(this.props.questions.length)}</span>
-          </p>
-        </div>
-        <div>
+      <View>
+        <Text style={style.YourScoreText}>Your Score</Text>
+        <View style={style.YourScoreMy}>
+          <Text style={style.YourScoreNum}>{this.state.score}
+            <Text style={style.YourScoreLength}>/{JSON.stringify(this.props.questions.length)}</Text>
+          </Text>
+        </View>
+        <View>
           {contentToDisplay}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 }

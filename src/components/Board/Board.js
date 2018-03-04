@@ -1,10 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import { View, Button } from 'react-native';
 import Header from '../Header/Header';
 import Card from '../Card/Card';
 import Questions from '../Questions/Questions';
-// import YourScore from '../YourScore/YourScore';
+import YourScore from '../YourScore/YourScore';
 import style from './Board.style';
 
 class Board extends React.Component {
@@ -68,10 +67,10 @@ class Board extends React.Component {
     });
   }
   bringScores = () => {
-    axios.get('/getAllScores').then((response) => {
-      console.log(response.data);
+    fetch('http://localhost:8080/getAllScores').then(response => response.json()).then((response) => {
+      console.log(response);
       this.setState({
-        scoresAll: response.data,
+        scoresAll: response,
         pageNo: 3,
       });
     });
@@ -100,14 +99,18 @@ class Board extends React.Component {
             username={this.state.username}
             setQuestions={(ques) => { this.setQuestions(ques); }}
           />
-          <Button onClick={() => this.bringScores()} title="Calculate" />
+          <Button onPress={() => this.bringScores()} title="Calculate" />
         </View>
       );
     }
     return (
       <View>
-        {/* <YourScore username={this.state.username}allScores={this.state.scoresAll} questions={this.state.questions} /> */}
-        {/* <button onClick={() => this.playAgain()}>Play Again</button> */}
+        <YourScore
+          username={this.state.username}
+          allScores={this.state.scoresAll}
+          questions={this.state.questions}
+        />
+        <Button onPress={() => this.playAgain()} title="Play Again" />
       </View>
     );
   }
