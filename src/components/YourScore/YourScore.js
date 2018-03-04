@@ -7,6 +7,7 @@ class YourScore extends React.Component {
     super(props);
     this.state = {
       score: '',
+      username: '',
     };
   }
   componentDidMount() {
@@ -14,6 +15,7 @@ class YourScore extends React.Component {
       if (this.props.allScores[i].username === this.props.username) {
         this.setState({
           score: this.props.allScores[i].score,
+          username: this.props.username,
         });
       }
     }
@@ -33,14 +35,23 @@ class YourScore extends React.Component {
     }
     console.log('####', scores);
     for (let i = 0; i < Math.min(this.props.allScores.length, 5); i++) {
-      console.log(scores);
-      const content = (
-        <View style={style.YourScoreScore}>
-          <Text ><Text style={style.YourScoreNumber}>{i + 1}.</Text>  {scores[i].username}</Text>
-          <Text >{scores[i].score}</Text>
-        </View>);
-      contentToDisplay.push(content);
-      // console.log(content);
+      if (scores[i].username === this.state.username) {
+        const content = (
+          <View style={style.YourScoreScoreSelect}>
+            <Text ><Text style={style.YourScoreNumber}>{i + 1}.</Text>  {scores[i].username}</Text>
+            <Text >{scores[i].score}</Text>
+          </View>);
+        contentToDisplay.push(content);
+      } else {
+        console.log(scores);
+        const content = (
+          <View style={style.YourScoreScore}>
+            <Text ><Text style={style.YourScoreNumber}>{i + 1}.</Text>  {scores[i].username}</Text>
+            <Text >{scores[i].score}</Text>
+          </View>);
+        contentToDisplay.push(content);
+        // console.log(content);
+      }
     }
     return (
       <View style={style.YourScoreTotal}>

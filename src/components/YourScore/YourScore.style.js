@@ -17,6 +17,22 @@ export default StyleSheet.create({
     borderWidth: 1,
     color: 'white',
   },
+  YourScoreScoreSelect: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'green',
+    width: '70%',
+    margin: 10,
+    marginLeft: 30,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 30,
+    paddingRight: 10,
+    borderColor: 'black',
+    borderWidth: 1,
+    color: 'white',
+  },
 
   YourScoreNum: {
     fontSize: 30,
