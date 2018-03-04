@@ -5,9 +5,14 @@ export default StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
     backgroundColor: 'rgb(68,195,249)',
+    width: '70%',
     margin: 10,
+    marginLeft: 30,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 30,
+    paddingRight: 10,
     borderColor: 'black',
     borderWidth: 1,
     color: 'white',
@@ -19,6 +24,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   YourScoreText: {
+    marginLeft: 25,
     color: 'rgb(251, 165, 26)',
 
   },
@@ -27,5 +33,8 @@ export default StyleSheet.create({
   },
   YourScoreNumber: {
     color: 'black',
+  },
+  YourScoreTotal: {
+    marginLeft: 50,
   },
 });

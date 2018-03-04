@@ -13,7 +13,7 @@ export default StyleSheet.create({
     borderColor: 'black',
     borderStyle: 'solid',
   },
-  Questionquestion: {
+  QuestionP: {
     backgroundColor: 'rgb(68,199,245)',
     textAlign: 'center',
     borderWidth: 1,
@@ -30,10 +30,5 @@ export default StyleSheet.create({
 
   QuestionOption: {
     fontWeight: 'bold',
-  },
-
-  QuestionP: {
-    margin: 0,
-    padding: 0,
   },
 });

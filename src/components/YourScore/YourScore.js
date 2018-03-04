@@ -43,7 +43,7 @@ class YourScore extends React.Component {
       // console.log(content);
     }
     return (
-      <View>
+      <View style={style.YourScoreTotal}>
         <Text style={style.YourScoreText}>Your Score</Text>
         <View style={style.YourScoreMy}>
           <Text style={style.YourScoreNum}>{this.state.score}

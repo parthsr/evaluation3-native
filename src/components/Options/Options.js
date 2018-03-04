@@ -12,7 +12,7 @@ const Options = (props) => {
         onPress={() => { props.handleChange(props.option); }}
         buttonWrapStyle={{ marginLeft: 10 }}
       />
-      <Text>{props.option}</Text>
+      <Text style={style.OptionsText}>{props.option}</Text>
     </View>
   );
 };
